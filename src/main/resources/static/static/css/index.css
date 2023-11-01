@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+    background-color: #ffffff;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+button{
+    border: none;
+    outline: none;
+}
+img{
+    width: 100%;
+}
+
+/* header */
+
+header{
+    max-width: 1200px;
+    margin: auto;
+}
+.hd-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 40px;
+}
+.function{
+    display: flex;
+    flex-direction: column;
+}
+.btn-function{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.btn-login{
+    background-color: #ffc107;
+    padding: 4px 8px;
+    border-radius: 15px;
+    color: white;
+}
+.link{
+    margin: 0 8px;
+    font-size: 12px;
+    
+}
+.search{
+    padding: 0 30px;
+    
+}
+.search input{
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    outline:none;
+    width: 300px;
+}
+.btn-search{
+    background-color: #4D90FE;
+    padding: 4.5px 6px;
+    color:white;
+
+}
+
+.hd-bt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    font-size: 20px;
+}
+.hd-bt .item{
+    padding: 4px 8px;
+}
+
+
+/* content */
+
+.content_1{
+    display: flex;
+    margin-bottom: 40px;
+
+}
+.content_1-l{
+    width: 65%;
+}
+.content_1-r{
+    background-color: #ccc;
+    width: 35%;
+    padding: 30px;
+}
+.table-info{
+    background: #235dc4;
+    padding: 8px;
+    color: white;
+}
+.list-info{
+    display: flex;
+}
+.info{
+    padding: 8px;
+}
+.item-info{
+    padding: 4px 0;
+}
+.white{
+    color: white;
+}
+.item-majon{
+    position: relative;
+}
+.over-layer{
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    left: 12px;
+    bottom: -1px;
+    background-color: #908d8a71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease-out 0.3s;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.item-majon:hover .over-layer{
+    margin-top: 30%;
+    background: transparent;
+
+}
+.content_2{
+    text-align: center;
+}
+.item-content_2{
+    padding-top: 20px;
+}
+.item-content_2:nth-child(even){
+    flex-direction: row-reverse;
+}

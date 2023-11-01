@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <main>
+    <style>
+          .form-detail {
+            padding-top: 50px;
+            display: flex;
+            position: relative;
+          }
+
+          .form-detail .control-custom {
+            font-size: 14px;
+            color: #868686;
+            width: 97%;
+          }
+
+          .form-detail .group {
+            position: relative;
+          }
+
+          .form-detail input {
+            display: block;
+            padding: 14px 0;
+            border: none;
+            border-bottom: 1px solid #d8d8d8;
+            margin-top: 26px;
+          }
+
+          .form-detail textarea {
+            display: block;
+            border: none;
+            border-bottom: 1px solid #d8d8d8;
+          }
+
+          .form-detail label {
+            font-size: 14px;
+            color: #868686;
+            position: absolute;
+            pointer-events: none;
+            left: 0;
+            top: 16px;
+          }
+
+          input:focus,
+          textarea:focus {
+            outline: none;
+          }
+
+          .form-detail .bar {
+            position: relative;
+            display: block;
+            width: 97%;
+          }
+
+          .bar::before,
+          .bar::after {
+            content:'';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #2cb680;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+          }
+
+          .bar::before {
+            left:50%;
+          }
+
+          .bar::after {
+            right:50%;
+          }
+
+          .form-detail input:focus ~ .bar::before,
+          .form-detail input:focus ~ .bar::after,
+          .form-detail textarea:focus ~ .bar::before,
+          .form-detail textarea:focus ~ .bar::after {
+            width:50%;
+          }
+          .bar::before,
+          .bar::after {
+            content:'';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #2cb680;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+          }
+          .form-detail input:focus ~ .bar::before,
+          .form-detail input:focus ~ .bar::after,
+          .form-detail textarea:focus ~ .bar::before,
+          .form-detail textarea:focus ~ .bar::after {
+            width:50%;
+          }
+          .form-detail label {
+            font-size: 14px;
+            color: #868686;
+            position: absolute;
+            pointer-events: none;
+            left: 0;
+            top: 16px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+          }
+          .form-detail input:focus ~ label,
+          .form-detail input:valid ~ label,
+          .form-detail textarea:focus ~ label,
+          .form-detail textarea:valid ~ label {
+            top: -16px;
+            color: black;
+          }
+          .form-button{
+            position: absolute;
+            bottom: 0;
+          }
+
+    </style>
+      <div>
+        <H2>Customer Detail</H2>
+        <div class="form-detail ">
+          <div class="form-info col-md-6 col-xs-12 ">
+            <div class="group">
+              <input class="control-custom" th:value="${customer.fullName}" type="text"/>
+              <span class="bar"></span>
+              <label>Full name</label>
+            </div>
+            <div class="group">
+              <input class="control-custom" th:value="${customer.email}" type="text"/>
+              <span class="bar"></span>
+              <label>Email</label>
+            </div>
+            <div class="group">
+              <input class="control-custom" th:value="${customer.phone}" type="text"/>
+              <span class="bar"></span>
+              <label>Phone</label>
+            </div>
+            <div class="group">
+              <input class="control-custom"  type="password"/>
+              <span class="bar"></span>
+              <label>Password</label>
+            </div>
+          </div>
+          <div class="form-message col-md-6 col-xs-12">
+            <h3>Order History</h3>
+            <table>
+              <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Full Name</th>
+                  <th scope="col">Number Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </table>
+          </div>
+        </div>
+        <div class="form-button p-4">
+          <button class="btn btn-info m-3 " type="submit">Update</button>
+          <button class="btn btn-danger m-3 " type="submit">Lock</button>
+        </div>
+      </div>
+  </main>
+</body>
+</html>
