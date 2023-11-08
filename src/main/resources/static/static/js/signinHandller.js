@@ -1,11 +1,12 @@
 
-let formLogin = document.getElementById("login-form");
+let formLogin = document.getElementById("sign-up-form");
 let mess = document.getElementById("mess");
 formLogin.onsubmit =(e)=>{
     e.preventDefault();
 
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    let roleId = document.getElementById("role").value;
 
     if(!email.trim() || !password.trim()){
         mess.innerText="Please fill in all information";
@@ -13,19 +14,22 @@ formLogin.onsubmit =(e)=>{
     }
     mess.innerText = "";
     $.ajax({
-        url: '/api/auth/login-handle',
+        url: '/api/auth/signin-handle',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify( {
             email: email,
-            password: password
+            password: password,
+            roleId: roleId,
+
         }),
         success: function(response) {
             console.log(response)
-            location.href=response;
+            location.href="/login";
         },
         error: function(xhr, status, error) {
-            mess.innerText="Wrong account!!"
+            alert(error);
+            console.log(xhr,status,error);
         }
-      });
+    });
 }

@@ -16,4 +16,6 @@ public interface UserserviceI {
     List<User> getUsersByRoleName(String roleName);
     User findById(Integer id);
 
+    List<User> findAll();
+
 }

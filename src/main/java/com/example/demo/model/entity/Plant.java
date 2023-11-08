@@ -23,8 +23,13 @@ public class Plant {
     @Column
     private Double price;
 
+    @Column
+    String description;
+
     @Column(name = "status" )
     private Boolean status = false;
+
+    private Integer cId;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

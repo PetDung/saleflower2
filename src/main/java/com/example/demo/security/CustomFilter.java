@@ -35,7 +35,6 @@ public class CustomFilter  extends OncePerRequestFilter {
                 null,
                 userDetails.getAuthorities()
         );
-        System.out.println(userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         filterChain.doFilter(request, response);
     }

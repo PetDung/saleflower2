@@ -37,7 +37,8 @@ public class UserService implements UserserviceI{
     @Override
     public void signin(LoginRequest userSign) {
         Optional<User> isExit =  userRepository.findByEmail(userSign.getEmail());
-        Role role = roleRepository.findByName("CUSTOMER").orElse(null);
+        Role role = roleRepository.findById(userSign.getRoleId()).orElse(null);
+        System.out.println("role:" +role.getName());
         if(!isExit.isEmpty()){
             throw new UsernameNotFoundException("Đã tồn tại người dùng");
         }
@@ -73,6 +74,11 @@ public class UserService implements UserserviceI{
                 });
 
         return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
 }

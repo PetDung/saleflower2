@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FlowerRepository extends JpaRepository<Plant,Integer> {
 
-    List<Plant> findAll();
+    List<Plant> findAllByStatus( Boolean status );
 }

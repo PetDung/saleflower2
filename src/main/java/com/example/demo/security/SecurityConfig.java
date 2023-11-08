@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -52,7 +53,7 @@ public class SecurityConfig {
         };
         String[] PRIVATE_ROUTE = {
                 "/admin",
-                "/admin/**",
+                "/admin/*",
         };
         http
                 .csrf(c -> c.disable())
@@ -67,10 +68,16 @@ public class SecurityConfig {
                                 .permitAll()
                 )
                 .logout((logout) -> logout
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login")
                         .deleteCookies("JSESSIONID")
                         .invalidateHttpSession(true)
                         .permitAll()
+                )
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling
+                                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                    response.sendRedirect("/403");
+                                })
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);

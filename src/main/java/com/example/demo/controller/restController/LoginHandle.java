@@ -61,7 +61,7 @@ public class LoginHandle {
     @PostMapping("/signin-handle")
     public ResponseEntity<?> signinHanle(@Validated @RequestBody LoginRequest userLogin){
         try {
-            System.out.println(userLogin.getEmail());
+            System.out.println("role"+ userLogin.getRoleId());
             userserviceI.signin(userLogin);
             return ResponseEntity.ok("Succ");
         }catch (Exception e){

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-@PreAuthorize("hasAnyRole('ROLE_Student', 'ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 public class Admin {
 
     @Autowired
@@ -28,8 +28,7 @@ public class Admin {
 
     @GetMapping("/customers")
     public String getCustomers(Model model){
-        List<User> customerList =  userserviceI.getUsersByRoleName("CUSTOMER");
-        System.out.println(customerList.get(0).getFullName());
+        List<User> customerList =  userserviceI.findAll();
         model.addAttribute("customerList",customerList);
         model.addAttribute("page", "customer");
         return "index";

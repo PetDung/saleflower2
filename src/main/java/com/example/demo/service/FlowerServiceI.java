@@ -21,8 +21,39 @@ public class FlowerServiceI implements FlowerService{
     CategoryRepository categoryRepository;
 
     @Override
-    public List<Plant> getAll() {
-        return flowerRepository.findAll();
+    public List<Plant> getAll(Boolean status) {
+        return flowerRepository.findAllByStatus(status);
+    }
+
+    @Override
+    public Plant findById(Integer id) {
+        return flowerRepository.findById(id)
+                .orElseThrow(() ->{
+                    try {
+                        throw new NotFoundException("Not found!");
+                    } catch (NotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+    }
+
+    @Override
+    public void update(Plant plant) {
+        Plant plst = findById(plant.getId());
+        Category category = categoryRepository.findById(plant.getCId())
+                .orElseThrow(() ->{
+                    try {
+                        throw new NotFoundException("Not found!");
+                    } catch (NotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+        plst.setCategory(category);
+        plst.setName(plant.getName());
+        plst.setPrice(plant.getPrice());
+        plst.setDescription(plant.getDescription());
+        flowerRepository.save(plst);
     }
 
     @Override
@@ -42,5 +73,12 @@ public class FlowerServiceI implements FlowerService{
         categoryRepository.save(category);
         flowerRepository.save(plant);
 
+    }
+
+    @Override
+    public void hidden(Integer id,Boolean hidden) {
+        Plant plant = findById(id);
+        plant.setStatus(hidden);
+        flowerRepository.save(plant);
     }
 }

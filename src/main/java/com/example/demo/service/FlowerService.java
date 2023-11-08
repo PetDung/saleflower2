@@ -7,7 +7,13 @@ import java.util.List;
 
 public interface FlowerService {
 
-    List<Plant> getAll();
+    List<Plant> getAll(Boolean status);
+
+    Plant findById( Integer id);
+
+    void update(Plant plant);
 
     void createPlants(PlantRequest plantRequest);
+
+    void hidden(Integer id,Boolean hidden);
 }

@@ -20,4 +20,6 @@ public class PlantRequest {
     private Double price;
 
     private Integer categoryId;
+
+    private String description;
 }

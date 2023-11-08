@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div  class="pt-4 pb-4">
+          <h2> Create Flower</h2>
+        </div>
+        <form action="/admin/flower/create" method="post" class="row g-3">
+          <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Name:</label>
+            <input name="name" type="text" class="form-control" id="validationDefault01"  required>
+            <div>
+              <label for="validationDefaultUsername" class="form-label">Price</label>
+              <div class="input-group">
+                <input name="price" type="number" class="form-control" id="validationDefaultUsername"  min="0" required>
+              </div>
+            </div>
+            <div>
+              <label for="validationDefault04" class="form-label">Category</label>
+              <select name="categoryId" class="form-select" id="validationDefault04" required>
+                <option th:each = "item : ${categories}" th:value="${item.id}" th:text="${item.name}">
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault02" class="form-label">Description</label>
+            <textarea name="description" type="text" class="form-control" id="validationDefault02" style="height: 100%">
+              </textarea>
+          </div>
+          <div class="col-12 pt-5">
+              <button class="btn btn-primary" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
