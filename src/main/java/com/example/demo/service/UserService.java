@@ -1,12 +1,20 @@
 package com.example.demo.service;
 
+import com.example.demo.model.entity.Category;
+import com.example.demo.model.entity.Plant;
 import com.example.demo.model.entity.Role;
 import com.example.demo.model.entity.User;
 import com.example.demo.model.request.LoginRequest;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailsService;
 import jakarta.servlet.http.HttpSession;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +33,10 @@ public class UserService implements UserserviceI{
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
 
     @Override
     public User findByEmail(String email) {
@@ -81,4 +93,15 @@ public class UserService implements UserserviceI{
         return userRepository.findAll();
     }
 
+    @Override
+    public void updateUser(User updatedUser) {
+        User existingUser = userRepository.findById(updatedUser.getId()).orElse(null);
+        if (existingUser != null) {
+            existingUser.setFullName(updatedUser.getFullName());
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setPhone(updatedUser.getPhone());
+            userRepository.save(existingUser);
+
+        }
+    }
 }

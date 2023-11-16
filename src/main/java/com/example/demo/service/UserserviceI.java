@@ -18,4 +18,6 @@ public interface UserserviceI {
 
     List<User> findAll();
 
+     void updateUser( User updatedUser);
+
 }
