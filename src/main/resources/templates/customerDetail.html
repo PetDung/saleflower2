@@ -8,6 +8,7 @@
   <main>
     <style>
           .form-detail {
+            padding: 0 20px; /* Add left and right padding */
             padding-top: 50px;
             display: flex;
             position: relative;
@@ -120,60 +121,70 @@
             top: -16px;
             color: black;
           }
-          .form-button{
-            position: absolute;
-            bottom: 0;
+
+          .form-button {
+            padding: 20px; /* Add padding for spacing */
+          }
+          .readonly-password {
+            background-color: #f0f0f0; /* Màu nền để thể hiện rõ trường chỉ đọc */
+            cursor: not-allowed; /* Biểu tượng con trỏ không cho phép */
           }
 
     </style>
       <div>
         <H2>Customer Detail</H2>
-        <div class="form-detail ">
-          <div class="form-info col-md-6 col-xs-12 ">
-            <div class="group">
-              <input class="control-custom" th:value="${customer.fullName}" type="text"/>
-              <span class="bar"></span>
-              <label>Full name</label>
+        <form class="form-detail row  " action="/admin/update-customer" method="post" >
+          <input hidden name="id" type="text" class="form-control"  th:value="${customer.id}">
+          <div class=" form-content row  col-12">
+            <div class="form-info col-md-6 col-xs-12 ">
+              <div class="group">
+                <input name="fullName" class="control-custom" th:field="${customer.fullName}" type="text"/>
+                <span class="bar"></span>
+                <label>Full name</label>
+              </div>
+              <div class="group">
+                <input class="control-custom" th:field="${customer.email}" type="text"/>
+                <span class="bar"></span>
+                <label>Email</label>
+              </div>
+              <div class="group">
+                <input class="control-custom" th:field="${customer.phone}" type="text"/>
+                <span class="bar"></span>
+                <label>Phone</label>
+              </div>
+              <div class="group">
+                <input class="control-custom readonly-password"   disabled  type="password"/>
+                <span class="bar"></span>
+                <label>Password</label>
+              </div>
             </div>
-            <div class="group">
-              <input class="control-custom" th:value="${customer.email}" type="text"/>
-              <span class="bar"></span>
-              <label>Email</label>
-            </div>
-            <div class="group">
-              <input class="control-custom" th:value="${customer.phone}" type="text"/>
-              <span class="bar"></span>
-              <label>Phone</label>
-            </div>
-            <div class="group">
-              <input class="control-custom"  type="password"/>
-              <span class="bar"></span>
-              <label>Password</label>
-            </div>
-          </div>
-          <div class="form-message col-md-6 col-xs-12">
-            <h3>Order History</h3>
-            <table>
-              <table class="table table-striped table-sm">
-                <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Full Name</th>
-                  <th scope="col">Number Phone</th>
-                  <th scope="col">Email</th>
-                  <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
+            <div class="form-message col-md-6 col-xs-12">
+              <h3>Order History</h3>
+              <table>
+                <table class="table table-striped table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Number Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
               </table>
-            </table>
+            </div>
           </div>
-        </div>
-        <div class="form-button p-4">
-          <button class="btn btn-info m-3 " type="submit">Update</button>
-          <button class="btn btn-danger m-3 " type="submit">Lock</button>
-        </div>
+
+          <div class="form-button  col-12  p-4">
+            <button class="btn btn-info m-3 " type="submit">Update</button>
+            <button class="btn btn-danger m-3 " type="submit">Lock</button>
+          </div>
+        </form>
+
+
       </div>
   </main>
 </body>
